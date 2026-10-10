@@ -5,7 +5,7 @@ edition = "2024"
 description = "A fixed, versioned set of open fonts and the CSS family names they stand in for, for headless rendering that must not depend on the machine's installed fonts"
 license = "MIT AND OFL-1.1"
 repository = "https://github.com/pathscale/headless-fonts"
-keywords = ["fonts", "headless", "css", "noto", "embedded"]
+keywords = ["fonts", "headless", "css", "gelasio", "noto"]
 categories = ["graphics", "rendering"]
 include = ["src/**", "assets/fonts/**", "LICENSE", "README.md", "Cargo.toml"]
 

@@ -5,15 +5,18 @@
 //! so `Georgia`, `system-ui` or `monospace` resolve to the same glyphs everywhere. A windowed browser should keep
 //! using system fonts; this set is for hosts that must be reproducible.
 //!
-//! The faces are OFL-1.1 (see `assets/fonts/*LICENSE*`); the code is MIT.
+//! Faces: Gelasio (serif, metric-compatible with Georgia), Noto Sans, Noto Mono, Noto Sans Devanagari, all OFL-1.1
+//! (see `assets/fonts/*LICENSE*`); the code is MIT.
 
 /// One embedded face.
 #[derive(Debug, Clone, Copy)]
 pub struct Face {
     /// The family name the face is registered under.
     pub family: &'static str,
-    /// CSS font-weight, 100 to 900.
+    /// CSS font-weight, 100 to 900. For a variable face, the default instance; `weight_range` is what it covers.
     pub weight: u16,
+    /// The weights a variable face covers through its `wght` axis; equal to `(weight, weight)` for a static face.
+    pub weight_range: (u16, u16),
     pub italic: bool,
     /// The TrueType file.
     pub data: &'static [u8],
@@ -34,7 +37,8 @@ macro_rules! font {
 }
 
 pub const SANS: &str = "Noto Sans";
-pub const SERIF: &str = "Noto Serif";
+/// Gelasio is metric-compatible with Georgia, so text set in Georgia keeps its line breaks.
+pub const SERIF: &str = "Gelasio";
 pub const MONO: &str = "Noto Mono";
 pub const DEVANAGARI: &str = "Noto Sans Devanagari";
 
@@ -43,36 +47,49 @@ pub const FACES: &[Face] = &[
     Face {
         family: SANS,
         weight: 400,
+        weight_range: (400, 400),
         italic: false,
         data: font!("NotoSans-Regular.ttf"),
     },
     Face {
         family: SANS,
         weight: 700,
+        weight_range: (700, 700),
         italic: false,
         data: font!("NotoSans-Bold.ttf"),
     },
     Face {
         family: SANS,
         weight: 400,
+        weight_range: (400, 400),
         italic: true,
         data: font!("NotoSans-Italic.ttf"),
     },
     Face {
         family: SERIF,
         weight: 400,
+        weight_range: (400, 700),
         italic: false,
-        data: font!("NotoSerif-Regular.ttf"),
+        data: font!("Gelasio-VariableWeight.ttf"),
+    },
+    Face {
+        family: SERIF,
+        weight: 400,
+        weight_range: (400, 700),
+        italic: true,
+        data: font!("Gelasio-Italic-VariableWeight.ttf"),
     },
     Face {
         family: MONO,
         weight: 400,
+        weight_range: (400, 400),
         italic: false,
         data: font!("NotoMono-Regular.ttf"),
     },
     Face {
         family: DEVANAGARI,
         weight: 400,
+        weight_range: (400, 400),
         italic: false,
         data: font!("NotoSansDevanagari-Regular.ttf"),
     },
