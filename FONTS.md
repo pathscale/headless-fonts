@@ -26,8 +26,8 @@ by a local digest.
 
 The following nameID 5 version and nameID 0 copyright strings are self-reported
 metadata embedded in the reviewed font bytes. They may help with lookup, but do
-not authenticate upstream origin, establish a release-to-hash match, or close
-HF-1.
+not authenticate upstream origin, establish a release-to-hash match, or treat
+provenance as established.
 
 | File | Embedded version | Embedded copyright |
 | --- | --- | --- |
